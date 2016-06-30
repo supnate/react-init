@@ -1,2 +1,2 @@
-# react-init
-Initialize an empty React project with Redux and React-router.
+# r3-setup
+Create an empty project using React + Redux + React-router.

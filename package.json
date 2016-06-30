@@ -1,0 +1,11 @@
+{
+  "name": "r3-setup",
+  "version": "0.1.0",
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "shelljs": "^0.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.1"
+  }
+}
