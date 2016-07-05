@@ -4,6 +4,18 @@ const shell = require('shelljs');
 const _ = require('lodash');
 
 const pkgJson = require('./templates/package.json');
+const prjName = process.argv[2];
+if (!prjName) {
+  console.error('Error: please specify the project name.');
+  process.exit(1);
+}
+
+const prjPath = path.join(process.cwd(), prjName);
+// shell.mkdir(path.join(process.cwd(), prjName))
+
+shell.cp('-r', path.join(__dirname, './templates'), prjPath);
+shell.mv(path.join(prjPath, '.eslintrc.tpl'), path.join(prjPath, '.eslintrc'));
+shell.mv(path.join(prjPath, '.gitignore.tpl'), path.join(prjPath, '.gitignore'));
 
 const prjConfig = {
   dependencies: [
@@ -68,7 +80,7 @@ Promise.all(promises).then(() => {
   console.log('Get versions done.');
   pkgJson.dependencies = _.pick(pkgVersions, prjConfig.dependencies);
   pkgJson.devDependencies = _.pick(pkgVersions, prjConfig.devDependencies);
-  shell.ShellString(JSON.stringify(pkgJson, null, '  ')).to(path.join(__dirname, '../fbcg/package.json'));
+  shell.ShellString(JSON.stringify(pkgJson, null, '  ')).to(path.join(prjPath, 'package.json'));
   console.log('package.json is created.');
 }).catch(err => console.log(err.stack || err));
 

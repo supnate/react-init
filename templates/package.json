@@ -1,16 +1,16 @@
 {
   "name": "my-awesome-project",
   "version": "0.1.0",
-  "scripts": {},
+  "scripts": {
+    "start": "node ./tools/server.js",
+    "build": "node ./tools/build.js",
+    "build:dll": "webpack --config webpack.dll.config.js"
+  },
   "babel": {
     "presets": [
       "es2015",
       "react",
       "babel-preset-stage-0"
     ]
-  },
-  "dependencies": {
-  },
-  "devDependencies": {
   }
 }
